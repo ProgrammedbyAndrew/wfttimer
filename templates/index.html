@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to 10 Millionth Customer</title>
+    <style>
+        body {
+            background-color: red;
+            color: white;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        #counter {
+            font-size: 58px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        .container {
+            text-align: center;
+            border: 2px solid white;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Countdown to Our 10 Millionth Customer</h1>
+        <div id="counter">Loading...</div>
+    </div>
+
+    <script>
+        function updateCounter() {
+            fetch('/get_count')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('counter').innerText = data.count;
+                });
+        }
+
+        setInterval(updateCounter, 1000);  // Poll server every second for updated count
+    </script>
+</body>
+</html>
